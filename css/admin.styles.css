@@ -1,0 +1,48 @@
+#login {
+    width: 100%;
+    height: 100vh;
+    padding: 0 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#main {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+#main form {
+    width: calc(100% - 20px);
+}
+
+.form-group {
+    margin: 20px 0;
+}
+
+table {
+    width: 100%;
+    padding: 0 10px;
+}
+
+table thead tr {
+    padding: 5px 0;
+}
+
+table thead tr td {
+    border-bottom: 3px solid #2e3190;
+}
+
+table tbody tr td {
+    padding: 10px 5px;
+    color: #333333;
+    border-bottom: 1px solid #a2a2a2;
+}
+
+table tbody tr td i {
+    cursor: pointer;
+}

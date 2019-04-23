@@ -1,0 +1,43 @@
+@media screen and (min-width: 768px) {
+    .site-info-img {
+        width: 50%;
+    }
+
+    .side-reverse {
+        display: flex;
+        flex-direction: row-reverse;
+        align-items: center;
+    }
+
+
+    .side {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
+
+    .f-start {
+        align-self: flex-start;
+    }
+
+    .site-landing-img {
+        display: flex;
+        width: 100%;
+        height: auto;
+        object-fit: contain;
+    }
+
+    #advantages-labels {
+        display: none;
+    }
+
+    .side .column {
+        width: 50%;
+    }
+
+    .column {
+        flex-direction: column;
+    }
+
+
+}
