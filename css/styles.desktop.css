@@ -1,128 +1,197 @@
 @media screen and (min-width: 1024px) {
-    header {
-        padding: 0 calc(50% - 512px) 30px calc(50% - 512px);
-        align-items: flex-start;
-    }
+  header {
+    padding: 0 calc(50% - 512px) 30px calc(50% - 512px);
+    align-items: flex-start;
+  }
 
-    header .fas {
-        display: none;
-    }
+  header .fas {
+    display: none;
+  }
 
-    header #nav {
-        display: flex;
-    }
+  header #nav {
+    display: flex;
+  }
 
-    header #site-title {
-        display: none;
-    }
+  header #site-title {
+    display: none;
+  }
 
-    header .logo {
-        display: flex; 
-        height: 70px;
-        object-fit: contain;
-    }
+  header .logo {
+    display: flex;
+    height: 70px;
+    object-fit: contain;
+  }
 
-    #nav ul {
-        display: flex;
-        list-style: none;
-        padding: 0;
-        margin: 0;
-        flex-direction: row;
-        align-items: center;
-    }
+  .site-info-img {
+    width: 65%;
+  }
 
-    #nav ul li {
-        display: flex;
-        flex-direction: column;
-        align-items: flex-end;
-    }
+  #nav ul {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    flex-direction: row;
+    align-items: center;
+  }
 
-    #nav ul li a:link {
-        margin: 0 10px;
-        padding: 30px 15px 10px 15px;
-        color: white;
-        text-decoration: none;
-        text-transform: uppercase;
-        font-weight: 600;   
-    }
+  #nav ul li {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+  }
 
-    #nav ul li a:hover {
-        border-bottom-left-radius: 10px;
-        border-bottom-right-radius: 10px;
-        background-color: #2cbbb7;
-        color: #2e3190;
-    }
+  #nav ul li a:link {
+    margin: 0 10px;
+    padding: 30px 15px 10px 15px;
+    color: white;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
 
-    .container {
-        padding: 0 calc(50% - 512px) !important;
-    }
+  #nav ul li a:hover {
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    background-color: #2cbbb7;
+    color: #2e3190;
+  }
 
-    #slider-plans {
-        display: flex;
-        width: 50%;
-    }
+  .container {
+    padding: 0 calc(50% - 512px) !important;
+  }
 
-    #slider-top {
-        padding: 0;
-    }
+  #slider-plans {
+    display: flex;
+    width: 50%;
+  }
 
-    #actions-plans {
-        width: 50%;
-        display: flex;
-        flex-direction: column;
-        align-self: flex-start;
-    }
+  #slider-top {
+    padding: 0;
+  }
 
-    #about {
-        flex-direction: row;
-    }
+  #actions-plans {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-self: flex-start;
+  }
 
-    #advantages-description {
-        margin-bottom: 20px;
-    }
+  #actions-buttons {
+    flex-direction: row;
+    margin: 0 0 20px 0;
+    padding: 0;
+  }
 
-    #our-local-title {
-        padding-top: 50px;
-        padding-bottom: 50px;
-    }
+  #actions-buttons a.button {
+    margin: 0 5px;
+  }
 
-    button {
-        font-size: 1rem;
-    }
+  #about {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 
-    #top-container {
-        display: flex;
-        flex-direction: row;
-        width: 100%;
-        align-items: center;
-    }
+  #about .text-box,
+  #about .text-box p {
+    align-items: flex-end;
+    text-align: right;
+  }
 
-    #contact .side {
-        flex-direction: row;
-    }
+  .text-box {
+    line-height: 2rem;
+  }
 
-    footer form {
-        padding: 0 calc(50% - 512px);
-    }
-    
-    .plan-full {
-        width: 30%;
-    }
-    
-    .plan-full.active {
-        display: flex;
-    }
+  #advantages-description {
+    margin-bottom: 20px;
+  }
 
-    #plans-full {
-        display: flex;
-    }
+  #our-local-title {
+    padding-top: 50px;
+    padding-bottom: 50px;
+  }
 
-    #plans.mob {
-        display: none;
-    }
+  button {
+    font-size: 1rem;
+  }
 
-    #contact-form {
-        padding: 0;
-    }
+  #top-container {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    align-items: center;
+  }
 
+  #contact .side {
+    flex-direction: row;
+  }
+
+  #contact .button {
+    padding-top: 15px;
+    padding-bottom: 15px;
+    font-size: 2.25rem;
+  }
+
+  #contact #more-info {
+    margin-top: 25px;
+  }
+
+  #contact #more-info-label {
+    position: relative;
+    top: -35px;
+    color: white;
+    padding: 10px 20px;
+    margin-bottom: -20px;
+    border-radius: 10px;
+    background-color: #2e3190;
+  }
+
+  footer form {
+    padding: 0 calc(50% - 512px);
+  }
+
+  .plan {
+    margin-top: 0;
+  }
+
+  .plan-full {
+    width: 30%;
+  }
+
+  .plan-full.active {
+    display: flex;
+  }
+
+  #plans-full {
+    display: flex;
+  }
+
+  #plans.mob {
+    display: none;
+  }
+
+  #contact-form {
+    padding: 0;
+  }
+
+  footer {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding: 50px 20px;
+  }
+
+  footer .col {
+    width: 25%;
+    padding: 0 10px;
+  }
+
+  footer .col input,
+  footer .col button {
+    display: inline;
+  }
+
+  #mob-newsletter {
+    display: none;
+  }
 }

@@ -1,15 +1,17 @@
 <?php
 
-function addPlan($name, $description, $price, $conn) {
-    $sql = "INSERT INTO plans VALUES (default, :name, :description, :price)";
+function addPlan($name, $description, $price, $img, $conn)
+{
+    $sql = "INSERT INTO plans VALUES (default, :name, :description, :price, :img)";
     $stmt = $conn->prepare($sql);
     $stmt->bindValue(':name', $name);
     $stmt->bindValue(':description', $description);
     $stmt->bindValue(':price', $price);
-    
+    $stmt->bindValue(':img', $img);
+
     $success = $stmt->execute();
 
-    if($success) {
+    if ($success) {
         $plans = getPlans($conn);
         return end($plans);
     } else {
@@ -17,7 +19,8 @@ function addPlan($name, $description, $price, $conn) {
     }
 }
 
-function getPlans($conn) {
+function getPlans($conn)
+{
     $sql = "SELECT * FROM plans";
     $stmt = $conn->prepare($sql);
     $stmt->execute();
@@ -25,5 +28,3 @@ function getPlans($conn) {
     $stmt->setFetchMode(PDO::FETCH_ASSOC);
     return $stmt->fetchAll();
 }
-
-?>

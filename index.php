@@ -1,36 +1,38 @@
 <?php
 session_start();
 
-require_once ('php/config/database.php');
-require_once ('php/controllers/options.php');
-require_once ('php/controllers/plans.php');
-require_once ('php/controllers/cities.php');
+require_once('php/config/database.php');
+require_once('php/controllers/options.php');
+require_once('php/controllers/plans.php');
+require_once('php/controllers/cities.php');
 
 $plans = getPlans($conn);
 $cities = getCities($conn);
 
-if(isset($_GET['local'])) {
+if (isset($_GET['local'])) {
     $_SESSION['local'] = $_GET['local'];
     header('location: ./');
 }
 ?>
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title><?php echo getOption('sitename', $conn)['value']; ?></title>
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" type="text/css" media="screen" href="css/fonts.css">
-        <link rel="stylesheet" type="text/css" media="screen" href="css/styles.css">
-        <link rel="stylesheet" type="text/css" media="screen" href="css/styles.tablet.css">
-        <link rel="stylesheet" type="text/css" media="screen" href="css/styles.desktop.css">
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-    </head>
-    <body>
 
-        <?php 
-        if(!isset($_SESSION['local'])) {
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title><?php echo getOption('sitename', $conn)['value']; ?></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="css/fonts.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="css/styles.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="css/styles.tablet.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="css/styles.desktop.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+</head>
+
+<body>
+
+    <?php
+    if (!isset($_SESSION['local'])) {
         ?>
         <div id="local-container">
             <img src="assets/logo.png" class="logo" alt="Logotipo ToolsNET">
@@ -38,17 +40,17 @@ if(isset($_GET['local'])) {
             <select name="city" id="local-picker">
                 <option selected disabled>Selecione sua cidade</option>
                 <?php
-                foreach($cities as $city) {
-                ?>
-                <option value="<?php echo $city['id']; ?>"><?php echo $city['city']; ?></option>
+                foreach ($cities as $city) {
+                    ?>
+                    <option value="<?php echo $city['id']; ?>"><?php echo $city['city']; ?></option>
                 <?php
-                }
-                ?>
+            }
+            ?>
             </select>
         </div>
-        <?php
-        } else {
-        ?>
+    <?php
+} else {
+    ?>
 
         <header>
             <img src="assets/logo.png" class="logo" alt="Logotipo ToolsNET">
@@ -77,9 +79,9 @@ if(isset($_GET['local'])) {
 
         <section id="top" class="container">
             <div id="slider-top">
-                <img src="assets/BANNER_1.png" alt="slide 1" class="active"> 
-                <img src="assets/BANNER_2.png" alt="slide 1" class=""> 
-                <img src="assets/BANNER_3.png" alt="slide 1" class=""> 
+                <img src="assets/BANNER_1.png" alt="slide 1" class="active">
+                <img src="assets/BANNER_2.png" alt="slide 1" class="">
+                <img src="assets/BANNER_3.png" alt="slide 1" class="">
             </div>
             <div id="top-container">
                 <div id="actions-plans">
@@ -88,8 +90,10 @@ if(isset($_GET['local'])) {
                         <span class="green bold"> ultravelocidade em fibra óptica</span>
                         <p class="white">Escolha um de nossos planos e ganhe um roteador!</p>
                     </div>
-                    <a href="contato" class="button white bold">Nós ligamos pra você</a>
-                    <a href="planos" class="button green bold">Todos os planos</a>
+                    <div id="actions-buttons">
+                        <a href="contato" class="button white bold">Nós ligamos pra você</a>
+                        <a href="planos" class="button green bold">Todos os planos</a>
+                    </div>
                 </div>
                 <div id="slider-plans">
                     <div class="arrow"><i id="prev" class="fas fa-angle-left"></i></div>
@@ -97,24 +101,13 @@ if(isset($_GET['local'])) {
                     foreach ($plans as $plan) {
                         $name = explode(' ', $plan['name']);
                         $price = explode(',', number_format($plan['price'], 2, ',', '.'));
-                    ?>
-                    <div class="plan">
-                        <div class="side-left">
-                            <p class="plan-name white bold"><span class="blue bold number"><?php echo $name[0]; ?></span><br><span class="white bold"><?php echo implode('<br>', array_slice($name, 1)); ?></span></p>
+                        ?>
+                        <div class="plan">
+                            <img onclick="window.open('planos', '_self')" src="./assets/plans/<?php echo $plan['img']; ?>" alt="<?php echo $plan['name']; ?>">
                         </div>
-                        <div class="side-right">
-                            <span class="white bold uppercase small side-label">A partir de:</span>
-                            <div class="plan-price-container">
-                                <span class="cipher white bold">R$</span>
-                                <span class="white bold value"><?php echo $price[0]; ?></span>
-                                <span class="white bold value-decimal"><?php echo ','.$price[1]; ?></span>
-                            </div>
-                            <a href="planos" class="button green bold">Assine agora</a>
-                        </div>
-                    </div>
                     <?php
-                    }
-                    ?>
+                }
+                ?>
                     <div class="arrow"><i id="next" class="fas fa-angle-right"></i></div>
                 </div>
             </div>
@@ -142,7 +135,7 @@ if(isset($_GET['local'])) {
                     <p class="fiber-description white"><?php echo getOption('fiber', $conn)['value']; ?></p>
                 </div>
             </div>
-            <div class="text-box">    
+            <div class="text-box">
                 <p class="fiber-title f-start">
                     <span class="bold blue uppercase">Maior velocidade</span>
                     <span class="blue uppercase">em vídeos e filmes</span>
@@ -156,16 +149,16 @@ if(isset($_GET['local'])) {
             <p id="advantages-title" class="bold blue uppercase">Vantagens</p>
             <p id="advantages-description" class="blue">Suporte telefônico de segunda a domingo ⦿ Empresa Local ⦿ Proximidade com o cliente ⦿ Atendimento local ⦿ Garantia da velocidade contratada</p>
             <div id="advantages-labels">
-                <div class="label blue">Maior velocidade de transmissão de dados</div> 
-                <div class="label blue">É imune a interferências eletromagnéticas externas</div> 
-                <div class="label blue">Menor degradação do sinal</div> 
-                <div class="label blue">Mais qualidade para o seu acesso</div> 
-                <div class="label blue">Segurança ao transportar informações</div> 
-                <div class="label blue">Suporte telefônico de segunda a domingo</div> 
-                <div class="label blue">Empresa local</div> 
-                <div class="label blue">Proximidade com o cliente</div> 
-                <div class="label blue">Atendimento local</div> 
-                <div class="label blue">Garantia da velocidade contratada</div> 
+                <div class="label blue">Maior velocidade de transmissão de dados</div>
+                <div class="label blue">É imune a interferências eletromagnéticas externas</div>
+                <div class="label blue">Menor degradação do sinal</div>
+                <div class="label blue">Mais qualidade para o seu acesso</div>
+                <div class="label blue">Segurança ao transportar informações</div>
+                <div class="label blue">Suporte telefônico de segunda a domingo</div>
+                <div class="label blue">Empresa local</div>
+                <div class="label blue">Proximidade com o cliente</div>
+                <div class="label blue">Atendimento local</div>
+                <div class="label blue">Garantia da velocidade contratada</div>
             </div>
         </section>
 
@@ -175,7 +168,7 @@ if(isset($_GET['local'])) {
                 <div class="column">
                     <a href="#" class="button green bold">assine já</a>
                     <div id="more-info">
-                        <span class="blue">Mais informações:</span><br>
+                        <span class="blue" id="more-info-label">Mais informações:</span><br>
                         <span class="blue bold"><?php echo getOption('phone', $conn)['value']; ?></span>
                     </div>
                 </div>
@@ -187,32 +180,98 @@ if(isset($_GET['local'])) {
         </section>
 
         <footer>
-            <form action="php/operations/request-contact.php" method="post">
+            <div class="col">
+                <img src="./assets/logo.png" alt="logotipo">
+                <div class="blue">
+                    <p class="bold">Atendimento nos escritórios:</p>
+                    <p>
+                        Segunda à sexta: das 08h às 12h - das 13h às 17h
+                        <br>
+                        Sábados: das 08h às 12h
+                    </p>
+                </div>
+                <div class="blue">
+                    <p class="bold">Suporte telefônico:</p>
+                    <p>
+                        De domingo à domingo, 24h
+                    </p>
+                </div>
+            </div>
+
+            <div class="col">
+                <input type="text" name="name" id="name" placeholder="Seu nome">
+                <div class="blue">
+                    <p class="bold">Loja 1 - Local</p>
+                    <p>
+                        Endereço
+                    </p>
+                </div>
+                <div class="blue">
+                    <p class="bold">Loja 2 - Local</p>
+                    <p>
+                        Endereço
+                    </p>
+                </div>
+            </div>
+
+            <div class="col">
+                <input type="email" name="email" id="email" placeholder="Seu e-mail">
+                <div class="blue">
+                    <p class="bold">Loja 1 - Local</p>
+                    <p>
+                        Endereço
+                    </p>
+                </div>
+                <div class="blue">
+                    <p class="bold">Loja 2 - Local</p>
+                    <p>
+                        Endereço
+                    </p>
+                </div>
+            </div>
+
+            <div class="col">
+                <button type="submit" value="send" class="white bold">Entre em contato!</button>
+                <div class="blue">
+                    <p class="bold">Loja 1 - Local</p>
+                    <p>
+                        Endereço
+                    </p>
+                </div>
+                <div class="blue">
+                    <p class="bold">Loja 2 - Local</p>
+                    <p>
+                        Endereço
+                    </p>
+                </div>
+            </div>
+
+            <div class="row">
+                <p class="blue"><span class="bold">Comercial:</span> telefones...</p>
+                <p class="blue"><span class="bold">Celulares:</span> telefones...</p>
+                <p class="blue"><span class="bold">WhatsApp:</span> telefones...</p>
+            </div>
+
+            <form action="#" id="mob-newsletter">
                 <input type="text" name="name" id="name" placeholder="Seu nome">
                 <input type="email" name="email" id="email" placeholder="Seu e-mail">
                 <button type="submit" value="send" class="white bold">Entre em contato!</button>
             </form>
 
-            <p id="credits">
-                <span class="blue bold uppercase"><?php echo getOption('sitename', $conn)['value']; ?></span><br>
-                <span class="blue">Todos os direitos reservados.</span><br>
-                <span class="blue"><?php echo getOption('phone', $conn)['value']; ?></span>
-            </p>
-
-            <div id="local-container-footer">
+            <div id="local-container-footer" style="font-size: .75rem; margin-top: 20px;">
                 <span>Você está em: </span>
-                <select style="font-size: .9rem;" id="local-picker">
-                <?php
-                foreach($cities as $city) {
-                ?>
-                <option value="<?php echo $city['id']?>" <?php if($city['id'] == $_SESSION['local']) echo 'selected'; ?>><?php echo $city['city']; ?></option>
-                <?php
+                <select id="local-picker">
+                    <?php
+                    foreach ($cities as $city) {
+                        ?>
+                        <option value="<?php echo $city['id'] ?>" <?php if ($city['id'] == $_SESSION['local']) echo 'selected'; ?>><?php echo $city['city']; ?></option>
+                    <?php
                 }
                 ?>
                 </select>
             </div>
 
-            <div id="brands">
+            <div id="brands" class="row">
                 <img src="assets/logo-raf.jpg" alt="logotipo raf">
                 <div id="social-networks">
                     <i class="fab fa-facebook blue" onclick="window.open('<?php echo getOption('facebook', $conn)['value']; ?>', '_blank');"></i>
@@ -220,8 +279,9 @@ if(isset($_GET['local'])) {
                 </div>
             </div>
         </footer>
-        <?php } ?>
-    </body>
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-    <script src="js/functions.js"></script>
+    <?php } ?>
+</body>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="js/functions.js"></script>
+
 </html>
