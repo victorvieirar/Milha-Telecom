@@ -30,7 +30,7 @@ if (isset($_GET['local'])) {
 </head>
 
 <body>
-
+    <script type="text/javascript" src="https://toolsnet.mktzap.com.br/webchat/"></script>
     <?php
     if (!isset($_SESSION['local'])) {
         ?>
@@ -177,11 +177,12 @@ if (isset($_GET['local'])) {
 
         <section id="our-local" class="container">
             <span id="our-local-title" class="white bold uppercase">Nossa presença</span>
+            <iframe style="width: 100%;" src="https://www.google.com/maps/d/embed?mid=1ENYSIl4WxtFHNp2iqe2S8mQemS6a6C_g" height="480"></iframe>
         </section>
 
         <footer>
             <div class="col">
-                <img src="./assets/logo.png" alt="logotipo">
+                <img style="width: 100%; padding-right: 30px;" src="./assets/logo.transparent.png" alt="logotipo">
                 <div class="blue">
                     <p class="bold">Atendimento nos escritórios:</p>
                     <p>

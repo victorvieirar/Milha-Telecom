@@ -58,7 +58,7 @@ $plans = getPlans($conn);
 
     <footer>
         <div class="col">
-            <img src="../assets/logo.png" alt="logotipo">
+            <img style="width: 100%; padding-right: 30px;" src="../assets/logo.transparent.png" alt="logotipo">
             <div class="blue">
                 <p class="bold">Atendimento nos escritórios:</p>
                 <p>
